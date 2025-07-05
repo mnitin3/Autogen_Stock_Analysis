@@ -22,7 +22,6 @@ class StockAnalysisApp:
         self.config = AppConfig()
         self.openai_client = OpenAIClient()
         self.agents = Agents()
-        # self.agent_orchestrator = orchestrate_agents()
 
     def render_sidebar(self):
         with st.sidebar:
@@ -57,7 +56,7 @@ class StockAnalysisApp:
                 help="Mention stock symbol you want to analyze"
             )
 
-        if st.button("Run Analysis", disabled=not(os.environ.get("OPENAI_API_KEY") and user_request)):
+        if st.button("Run Analysis", disabled=not(user_request)):
             if not os.environ.get("OPENAI_API_KEY"):
                 st.error("⚠️ Please provide your OpenAI API key in the sidebar")
             else:
